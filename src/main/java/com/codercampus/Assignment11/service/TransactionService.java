@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 @Service
 //Sort the transactions by date
 public class TransactionService {
-    @Autowired
     private final TransactionRepository transactionRepository;
 
     public TransactionService(TransactionRepository transactionRepository) {

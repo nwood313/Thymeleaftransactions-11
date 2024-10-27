@@ -2,19 +2,75 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
 	<title>Transaction Info</title>
+	<style>
+		body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .transaction-details {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .transaction-details div {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .amount {
+            font-weight: bold;
+            font-size: 18px;
+            color: #d9534f; /* Red for debit */
+        }
+
+        .amount.credit {
+            color: #5cb85c; /* Green for credit */
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+	</style>
 </head>
 <body>
 <h2 th:text="|Transaction ID: ${transaction.id} (${transaction.type == 'C' ? 'Credit' : 'Debit'})|"></h2>
 
-<div th:inline="text">
-	Date: [[${transaction.date}]]
+<div class="transaction-details">
+	<div>
+		Date: <span th:text="${transaction.date}"></span>
+	</div>
+	<div>
+		Amount: <span class="amount" th:class="${transaction.type == 'C' ? 'credit' : ''}" th:text="${transaction.type == 'C' ? '-' + transaction.amount : transaction.amount}"></span>
+	</div>
+	<div>
+		Description: <span th:text="${transaction.description}"></span>
+	</div>
 </div>
-<div>
-	Amount: <span th:text="${transaction.type == 'C' ? '-' + transaction.amount : transaction.amount}"></span>
-</div>
-<div>
-	Description: <span th:text="${transaction.description}"></span>
-</div>
-<a href="/transactions">back</a>
+
+<a href="/transactions">Back to Transactions</a>
 </body>
 </html>

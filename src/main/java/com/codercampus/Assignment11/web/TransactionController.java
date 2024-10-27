@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/transactions")
 public class TransactionController {
 
     @Autowired
@@ -22,7 +21,7 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @GetMapping
+    @GetMapping("/transactions")
     public String getAllTransactions(Model model) {
         List<Transaction>transactions = transactionService.getAllTransactions();
         model.addAttribute("transactions", transactions);

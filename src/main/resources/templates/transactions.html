@@ -1,35 +1,89 @@
 <html xmlns:th="http://thymeleaf.org" xmlns:tdth="http://www.w3.org/1999/XSL/Transform">
-	<head>
-		<title>Online Bank</title>
-		<link rel="stylesheet" href="/css/transactions.css"/>
-	</head>
-	<body>
-		<h2>Transaction History</h2>
-		
-		<table>
-			<tr>
-				<th>ID</th>
-				<th>Date</th>
-				<th>Retailer</th>
-				<th>Funds In</th>
-				<th>Funds Out</th>
-			</tr>
-			<!-- These 4 rows below are for demonstration purposes only
-			     You will need to edit the code below in order to make
-			     it dynamically list ALL 100 transactions from the Repo -->
-			<tr>
-			<tr th:each="transaction : ${transactions}">
-				<td>
-					<a th:href="@{/transactions/{id}(id=${transaction.id})}" th:text="${transaction.id}"></a>
-				</td>
-				<td th:text="${transaction.date}"></td>
-				<td th:text="${transaction.retailer}"></td>
-				<td th:text="${(transaction.type == 'C') ? transaction.amount : '-'}"></td>
-				<td th:text="${(transaction.type == 'C') ? '-' : transaction.amount}"></td>
-			</tr>
+<head>
+	<title>Online Bank</title>
+	<style>
+		body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
 
-		</table>
-			
-		</table>
-	</body>
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        td {
+            color: #333;
+        }
+
+        td:nth-child(4) {
+            color: #5cb85c; /* Green for funds in */
+            font-weight: bold;
+        }
+
+        td:nth-child(5) {
+            color: #d9534f; /* Red for funds out */
+            font-weight: bold;
+        }
+	</style>
+</head>
+<body>
+<h2>Transaction History</h2>
+
+<table>
+	<tr>
+		<th>ID</th>
+		<th>Date</th>
+		<th>Retailer</th>
+		<th>Funds In</th>
+		<th>Funds Out</th>
+	</tr>
+	<tr th:each="transaction : ${transactions}">
+		<td>
+			<a th:href="@{/transactions/{id}(id=${transaction.id})}" th:text="${transaction.id}"></a>
+		</td>
+		<td th:text="${transaction.date}"></td>
+		<td th:text="${transaction.retailer}"></td>
+		<td th:text="${(transaction.type == 'C') ? transaction.amount : '-'}"></td>
+		<td th:text="${(transaction.type == 'C') ? '-' : transaction.amount}"></td>
+	</tr>
+</table>
+</body>
 </html>
