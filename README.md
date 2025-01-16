@@ -1,1 +1,1 @@
-The purpose of this assignment is to create an online account transaction history viewer using REST controller Java and introducing HTML to recreate the given design. The changes branch is my effort to make it look realistic by adding some CSS techniques into the HTML. 
+Created an online account transaction history viewer using REST controller Java and introducing HTML to recreate the given design. The changes branch is my effort to make it look realistic by adding some CSS techniques into the HTML. 
